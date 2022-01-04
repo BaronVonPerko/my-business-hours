@@ -11,21 +11,21 @@ function create_admin_page() {
 add_action('admin_init', 'register_plugin_settings');
 function register_plugin_settings()
 {
-    register_setting('my_business_hours_options', 'sunday_hours');
-    register_setting('my_business_hours_options', 'monday_hours');
-    register_setting('my_business_hours_options', 'tuesday_hours');
-    register_setting('my_business_hours_options', 'wednesday_hours');
-    register_setting('my_business_hours_options', 'thursday_hours');
-    register_setting('my_business_hours_options', 'friday_hours');
-    register_setting('my_business_hours_options', 'saturday_hours');
+    register_setting('my_business_hours_options', 'mbh_sunday_hours');
+    register_setting('my_business_hours_options', 'mbh_monday_hours');
+    register_setting('my_business_hours_options', 'mbh_tuesday_hours');
+    register_setting('my_business_hours_options', 'mbh_wednesday_hours');
+    register_setting('my_business_hours_options', 'mbh_thursday_hours');
+    register_setting('my_business_hours_options', 'mbh_friday_hours');
+    register_setting('my_business_hours_options', 'mbh_saturday_hours');
 
-    register_setting('my_business_hours_options', 'sunday_hours_closed');
-    register_setting('my_business_hours_options', 'monday_hours_closed');
-    register_setting('my_business_hours_options', 'tuesday_hours_closed');
-    register_setting('my_business_hours_options', 'wednesday_hours_closed');
-    register_setting('my_business_hours_options', 'thursday_hours_closed');
-    register_setting('my_business_hours_options', 'friday_hours_closed');
-    register_setting('my_business_hours_options', 'saturday_hours_closed');
+    register_setting('my_business_hours_options', 'mbh_sunday_hours_closed');
+    register_setting('my_business_hours_options', 'mbh_monday_hours_closed');
+    register_setting('my_business_hours_options', 'mbh_tuesday_hours_closed');
+    register_setting('my_business_hours_options', 'mbh_wednesday_hours_closed');
+    register_setting('my_business_hours_options', 'mbh_thursday_hours_closed');
+    register_setting('my_business_hours_options', 'mbh_friday_hours_closed');
+    register_setting('my_business_hours_options', 'mbh_saturday_hours_closed');
 
 }
 
@@ -41,13 +41,13 @@ function my_business_hours_section_callback() {
 
     echo '<table class="form-table"><tbody>';
 
-    echo_day_field('sunday_hours', 'Sunday');
-    echo_day_field('monday_hours', 'Monday');
-    echo_day_field('tuesday_hours', 'Tuesday');
-    echo_day_field('wednesday_hours', 'Wednesday');
-    echo_day_field('thursday_hours', 'Thursday');
-    echo_day_field('friday_hours', 'Friday');
-    echo_day_field('saturday_hours', 'Saturday');
+    echo_day_field('mbh_sunday_hours', 'Sunday');
+    echo_day_field('mbh_monday_hours', 'Monday');
+    echo_day_field('mbh_tuesday_hours', 'Tuesday');
+    echo_day_field('mbh_wednesday_hours', 'Wednesday');
+    echo_day_field('mbh_thursday_hours', 'Thursday');
+    echo_day_field('mbh_friday_hours', 'Friday');
+    echo_day_field('mbh_saturday_hours', 'Saturday');
 
     echo '</tbody></table>';
 }

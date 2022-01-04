@@ -7,5 +7,6 @@
  * Plugin Name: My Business Hours
  */
 
-// require the pages/settings.php file
+
 require_once( plugin_dir_path( __FILE__ ) . 'pages/settings.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'inc/shortcode.php' );
