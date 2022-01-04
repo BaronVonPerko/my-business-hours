@@ -18,6 +18,15 @@ function register_plugin_settings()
     register_setting('my_business_hours_options', 'thursday_hours');
     register_setting('my_business_hours_options', 'friday_hours');
     register_setting('my_business_hours_options', 'saturday_hours');
+
+    register_setting('my_business_hours_options', 'sunday_hours_closed');
+    register_setting('my_business_hours_options', 'monday_hours_closed');
+    register_setting('my_business_hours_options', 'tuesday_hours_closed');
+    register_setting('my_business_hours_options', 'wednesday_hours_closed');
+    register_setting('my_business_hours_options', 'thursday_hours_closed');
+    register_setting('my_business_hours_options', 'friday_hours_closed');
+    register_setting('my_business_hours_options', 'saturday_hours_closed');
+
 }
 
 // create the settings sections
@@ -29,13 +38,21 @@ function create_settings_sections()
 
 function my_business_hours_section_callback() {
     echo '<p>Enter your business hours below.</p>';
-    echo '<input type="text" placeholder="Sunday" name="sunday_hours" value="' . get_option('sunday_hours') . '" />';
-    echo '<input type="text" placeholder="Monday" name="monday_hours" value="' . get_option('monday_hours') . '" />';
-    echo '<input type="text" placeholder="Tuesday" name="tuesday_hours" value="' . get_option('tuesday_hours') . '" />';
-    echo '<input type="text" placeholder="Wednesday" name="wednesday_hours" value="' . get_option('wednesday_hours') . '" />';
-    echo '<input type="text" placeholder="Thursday" name="thursday_hours" value="' . get_option('thursday_hours') . '" />';
-    echo '<input type="text" placeholder="Friday" name="friday_hours" value="' . get_option('friday_hours') . '" />';
-    echo '<input type="text" placeholder="Saturday" name="saturday_hours" value="' . get_option('saturday_hours') . '" />';
+    echo_day_field('sunday_hours', 'Sunday');
+    echo_day_field('monday_hours', 'Monday');
+    echo_day_field('tuesday_hours', 'Tuesday');
+    echo_day_field('wednesday_hours', 'Wednesday');
+    echo_day_field('thursday_hours', 'Thursday');
+    echo_day_field('friday_hours', 'Friday');
+    echo_day_field('saturday_hours', 'Saturday');
+}
+
+function echo_day_field($name, $day) {
+    $is_closed = get_option($name . '_closed');
+    echo '<div>';
+    echo '<input type="text" placeholder="' . $day . '" name="' . $name . '" value="' . get_option($name) . '" />';
+    echo '<input type="checkbox" name="' . $name . '_closed" value="1" ' . checked(1, get_option($name . '_closed'), false) . ' /> Closed';
+    echo '</div>';
 }
 
 function create_admin_page_content() {
