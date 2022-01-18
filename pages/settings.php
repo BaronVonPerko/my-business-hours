@@ -3,7 +3,8 @@
 
 // create an admin page under the settings link in wordpress admin
 add_action('admin_menu', 'create_admin_page');
-function create_admin_page() {
+function create_admin_page()
+{
     add_options_page('My Business Hours Settings', 'My Business Hours', 'manage_options', 'settings', 'create_admin_page_content');
 }
 
@@ -36,7 +37,8 @@ function create_settings_sections()
     add_settings_section('my_business_hours_section', 'Business Hours', 'my_business_hours_section_callback', 'my_business_hours_section');
 }
 
-function my_business_hours_section_callback() {
+function my_business_hours_section_callback()
+{
     echo '<p>Enter your business hours below.</p>';
 
     echo '<table class="form-table"><tbody>';
@@ -52,15 +54,18 @@ function my_business_hours_section_callback() {
     echo '</tbody></table>';
 }
 
-function echo_day_field($name, $day) {
+function echo_day_field($name, $day)
+{
     $is_closed = get_option($name . '_closed');
+    $cb_id = $name . '_closed';
     echo '<tr><th>' . $day . '</th><td>';
-    echo '<input type="text" placeholder="' . $day . '" name="' . $name . '" value="' . get_option($name) . '" />';
-    echo '<input type="checkbox" name="' . $name . '_closed" value="1" ' . checked(1, get_option($name . '_closed'), false) . ' /> Closed';
+    echo '<input type="text" placeholder="' . $day . '" id="' . $name . '" name="' . $name . '" value="' . get_option($name) . '" />';
+    echo '<input type="checkbox" id="' . $cb_id . '" name="' . $cb_id . '" value="1" ' . checked(1, get_option($name . '_closed'), false) . ' /> Closed';
     echo '</td></tr>';
 }
 
-function create_admin_page_content() {
+function create_admin_page_content()
+{
     ?>
     <div class="wrap">
         <h2>My Business Hours Settings</h2>
