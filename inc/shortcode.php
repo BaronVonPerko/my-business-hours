@@ -9,13 +9,13 @@ function business_hours_shortcode() {
     $friday_closed = get_option('mbh_friday_hours_closed');
     $saturday_closed = get_option('mbh_saturday_hours_closed');
 
-    $sunday_hours = $sunday_closed ? "Closed" : get_option('mbh_sunday_hours');
-    $monday_hours = $monday_closed ? "Closed" : get_option('mbh_monday_hours');
-    $tuesday_hours = $tuesday_closed ? "Closed" : get_option('mbh_tuesday_hours');
-    $wednesday_hours = $wednesday_closed ? "Closed" : get_option('mbh_wednesday_hours');
-    $thursday_hours = $thursday_closed ? "Closed" : get_option('mbh_thursday_hours');
-    $friday_hours = $friday_closed ? "Closed" : get_option('mbh_friday_hours');
-    $saturday_hours = $saturday_closed ? "Closed" : get_option('mbh_saturday_hours');
+    $sunday_hours = $sunday_closed ? "Closed" : mbh_get_hours('sunday');
+    $monday_hours = $monday_closed ? "Closed" : mbh_get_hours('monday');
+    $tuesday_hours = $tuesday_closed ? "Closed" : mbh_get_hours('tuesday');
+    $wednesday_hours = $wednesday_closed ? "Closed" : mbh_get_hours('wednesday');
+    $thursday_hours = $thursday_closed ? "Closed" : mbh_get_hours('thursday');
+    $friday_hours = $friday_closed ? "Closed" : mbh_get_hours('friday');
+    $saturday_hours = $saturday_closed ? "Closed" : mbh_get_hours('saturday');
 
     // table with each day of the week and hours
     $table = '<table class="table table-bordered table-striped">';
@@ -61,3 +61,13 @@ function business_hours_shortcode() {
     return $table;
 }
 add_shortcode( 'my_business_hours', 'business_hours_shortcode' );
+
+
+function mbh_get_hours($day) {
+    $open_hour = get_option("mbh_${day}_hours_open_h");
+    $open_minute = get_option("mbh_${day}_hours_open_m");
+    $close_hour = get_option("mbh_${day}_hours_close_h");
+    $close_minute = get_option("mbh_${day}_hours_close_m");
+
+    return "${open_hour}:${open_minute} - ${close_hour}:${close_minute}";
+}
