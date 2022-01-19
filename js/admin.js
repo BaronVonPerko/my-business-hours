@@ -116,8 +116,6 @@ class AdminInputController
         const closeHour = this[`${dayOfWeek}CloseHour`];
         const closeMinute = this[`${dayOfWeek}CloseMinute`];
 
-        console.log(disable);
-
         if (disable) {
             openHour.disabled = true;
             openMinute.disabled = true;
