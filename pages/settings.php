@@ -12,21 +12,41 @@ function create_admin_page()
 add_action('admin_init', 'register_plugin_settings');
 function register_plugin_settings()
 {
-    register_setting('my_business_hours_options', 'mbh_sunday_hours_h');
-    register_setting('my_business_hours_options', 'mbh_monday_hours_h');
-    register_setting('my_business_hours_options', 'mbh_tuesday_hours_h');
-    register_setting('my_business_hours_options', 'mbh_wednesday_hours_h');
-    register_setting('my_business_hours_options', 'mbh_thursday_hours_h');
-    register_setting('my_business_hours_options', 'mbh_friday_hours_h');
-    register_setting('my_business_hours_options', 'mbh_saturday_hours_h');
+    // Open Hours
+    register_setting('my_business_hours_options', 'mbh_sunday_hours_open_h');
+    register_setting('my_business_hours_options', 'mbh_monday_hours_open_h');
+    register_setting('my_business_hours_options', 'mbh_tuesday_hours_open_h');
+    register_setting('my_business_hours_options', 'mbh_wednesday_hours_open_h');
+    register_setting('my_business_hours_options', 'mbh_thursday_hours_open_h');
+    register_setting('my_business_hours_options', 'mbh_friday_hours_open_h');
+    register_setting('my_business_hours_options', 'mbh_saturday_hours_open_h');
 
-    register_setting('my_business_hours_options', 'mbh_sunday_hours_m');
-    register_setting('my_business_hours_options', 'mbh_monday_hours_m');
-    register_setting('my_business_hours_options', 'mbh_tuesday_hours_m');
-    register_setting('my_business_hours_options', 'mbh_wednesday_hours_m');
-    register_setting('my_business_hours_options', 'mbh_thursday_hours_m');
-    register_setting('my_business_hours_options', 'mbh_friday_hours_m');
-    register_setting('my_business_hours_options', 'mbh_saturday_hours_m');
+    // Open Minutes
+    register_setting('my_business_hours_options', 'mbh_sunday_hours_open_m');
+    register_setting('my_business_hours_options', 'mbh_monday_hours_open_m');
+    register_setting('my_business_hours_options', 'mbh_tuesday_hours_open_m');
+    register_setting('my_business_hours_options', 'mbh_wednesday_hours_open_m');
+    register_setting('my_business_hours_options', 'mbh_thursday_hours_open_m');
+    register_setting('my_business_hours_options', 'mbh_friday_hours_open_m');
+    register_setting('my_business_hours_options', 'mbh_saturday_hours_open_m');
+
+    // Close Hours
+    register_setting('my_business_hours_options', 'mbh_sunday_hours_close_h');
+    register_setting('my_business_hours_options', 'mbh_monday_hours_close_h');
+    register_setting('my_business_hours_options', 'mbh_tuesday_hours_close_h');
+    register_setting('my_business_hours_options', 'mbh_wednesday_hours_close_h');
+    register_setting('my_business_hours_options', 'mbh_thursday_hours_close_h');
+    register_setting('my_business_hours_options', 'mbh_friday_hours_close_h');
+    register_setting('my_business_hours_options', 'mbh_saturday_hours_close_h');
+
+    // Close Minutes
+    register_setting('my_business_hours_options', 'mbh_sunday_hours_close_m');
+    register_setting('my_business_hours_options', 'mbh_monday_hours_close_m');
+    register_setting('my_business_hours_options', 'mbh_tuesday_hours_close_m');
+    register_setting('my_business_hours_options', 'mbh_wednesday_hours_close_m');
+    register_setting('my_business_hours_options', 'mbh_thursday_hours_close_m');
+    register_setting('my_business_hours_options', 'mbh_friday_hours_close_m');
+    register_setting('my_business_hours_options', 'mbh_saturday_hours_close_m');
 
     register_setting('my_business_hours_options', 'mbh_sunday_hours_closed');
     register_setting('my_business_hours_options', 'mbh_monday_hours_closed');
@@ -64,12 +84,13 @@ function my_business_hours_section_callback()
 
 function echo_day_field($name, $day)
 {
-    $cb_id = $name . '_closed';
+    $closed_checkbox_id = $name . '_closed';
     echo '<tr><th>' . $day . '</th><td>';
-    echo '<input type="number" placeholder="HH" id="' . $name . '_h" name="' . $name . '_h" value="' . get_option($name . "_h") . '" min="1" max="12" />';
-    echo '<input type="number" placeholder="MM" id="' . $name . '_m" name="' . $name . '_m" value="' . get_option($name . "_m") . '" min="0" max="55" step="5" />';
-//    echo '<input type="text" placeholder="' . $day . '" id="' . $name . '" name="' . $name . '" value="' . get_option($name) . '" />';
-    echo '<input type="checkbox" id="' . $cb_id . '" name="' . $cb_id . '" value="1" ' . checked(1, get_option($name . '_closed'), false) . ' /> Closed';
+    echo '<input type="number" placeholder="Open HH" id="' . $name . '_open_h" name="' . $name . '_open_h" value="' . get_option($name . "_open_h") . '" min="1" max="12" />';
+    echo '<input type="number" placeholder="Open MM" id="' . $name . '_open_m" name="' . $name . '_open_m" value="' . get_option($name . "_open_m") . '" min="0" max="55" step="5" onchange="if(parseInt(this.value,10)<10)this.value=\'0\'+this.value;" />';
+    echo '<input type="number" placeholder="Close HH" id="' . $name . '_close_h" name="' . $name . '_close_h" value="' . get_option($name . "_close_h") . '" min="1" max="12" />';
+    echo '<input type="number" placeholder="Close MM" id="' . $name . '_close_m" name="' . $name . '_close_m" value="' . get_option($name . "_close_m") . '" min="0" max="55" step="5" onchange="if(parseInt(this.value,10)<10)this.value=\'0\'+this.value;" />';
+    echo '<input type="checkbox" id="' . $closed_checkbox_id . '" name="' . $closed_checkbox_id . '" value="1" ' . checked(1, get_option($name . '_closed'), false) . ' /> Closed';
     echo '</td></tr>';
 }
 
